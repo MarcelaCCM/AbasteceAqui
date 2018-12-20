@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Altera Cliente</title>
+    </h:head>
+    <h:body>
+        <c:if test="${loginClienteController.clienteLogado == null}">
+            <script>location.href = "index.xhtml";</script>
+        </c:if>
+ 
+         <h:form>
+                <p:fieldset legend="ALTERA CLIENTE">
+                    <p:panelGrid  columns="2">
+                      
+                         <h:outputText value="Fone"/>
+                        <p:inputText value="#{clienteController.selectedCliente.fone}"/>
+                        
+                        <h:outputText value="Rua"/>
+                        <p:inputText value="#{clienteController.selectedCliente.endereco.rua}"/>
+                        
+                          <h:outputText value="Número"/>
+                        <p:inputText value="#{clienteController.selectedCliente.endereco.numero}"/>
+                        
+                          <h:outputText value="Bairro"/>
+                        <p:inputText value="#{clienteController.selectedCliente.endereco.bairro}"/>
+                        
+                          <h:outputText value="CEP"/>
+                        <p:inputText value="#{clienteController.selectedCliente.endereco.cep}"/>
+                        
+                         <h:outputText value="Login"/>
+                        <p:inputText value="#{clienteController.selectedCliente.login}"/>
+                        
+                          <h:outputText value="Senha"/>
+                        <p:inputText value="#{clienteController.selectedCliente.senha}"/>
+
+                 
+               <p:commandButton styleClass="botao" value="Alterar"
+						oncomplete="PF('widDialConfirmaCad').show()" />
+
+					<p:dialog visible="false" id="dialConfirmaCad" modal="true"
+						widgetVar="widDialConfirmaCad">
+						<p:fieldset legend="Deseja realmente alterar?">
+							<p:commandButton value="Sim" action="#{clienteController.alterar()}"
+								oncomplete="PF('widDialConfirmaCad').hide()" />
+							<p:commandButton value="Não"
+								oncomplete="PF('widDialConfirmaCad').hide()" />
+									
+						</p:fieldset>
+						
+							<p:commandButton styleClass="botaoSairCliente" value="Sair"
+							action="#{clienteController.linkSair()}" />
+					</p:dialog>
+					</p:panelGrid>
+					</p:fieldset>
+            </h:form>
+    </h:body>
+</html>

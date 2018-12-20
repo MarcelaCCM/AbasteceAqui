@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#contaneer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 1000px;
+}
+
+#conteudo {
+	background-image: url("../imagens/loginUsuario.jpeg");
+	background-size: cover;
+	width: 400px;
+	height: 700px;
+}
+
+.ui-widget-content {
+	background: none !important;
+}
+
+tr, td {
+	border: none !important;
+}
+
+#form-login {
+	margin-top: 380px;
+	margin-left: 75px
+}
+
+.txt {
+	font-size: 18pt !important;
+	color: #fff;
+}
+
+.botaoLogin {
+	margin-left: 70px !important;
+}
+
+.botaoCadastrar {
+	padding: 5px 40px !important;
+	background: #ffff00 !important;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.caixadetexto {
+	float: right;
+	padding: 0;
+	margin: 0;
+}

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#conteudo-pagina-principal, #conteudo-interno {
+	display: flex;
+	justify-content: center;	
+}
+
+#conteudo-pagina-principal {
+	height: 40em;
+}
+
+#conteudo-interno {
+	align-items: center;
+}
+
+.fCadastro {
+	width: 450px;
+}
+
+.cadgrid tr, .cadgrid td {
+	border: none !important;
+}
+
+.caixadetexto {
+	float: right;
+	padding: 0;
+	margin: 0;
+}
+
+
+
+.botao {
+	float: right;
+	background-image: linear-gradient(to top, yellow);
+	color: #000000;
+	padding: 2px 5px;
+	border-raduis: 4px;
+	border: 1px solid #111111;
+	box-shadow: 2px 2px 2px #a9a9a9;
+}
+

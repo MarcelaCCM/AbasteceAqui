@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("../imagens/perfilCliente.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#cabecalho {
+	margin-top: 40px;
+	margin-bottom: 0;
+
+}
+
+.botaoAlterarCliente {
+	margin-top: 65px;
+	margin-left: 1550px;
+	color: #000000 !important;
+	background: #ffff00 !important;
+	padding: 10px 25px !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	position: absolute !important;
+	display: block;
+}
+
+.botaoPostoCliente {
+	margin-top: 400px;
+	margin-left: 150px;
+	color: #000000!important;
+	background: #ffff00 !important;
+	padding: 10px 20px !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+.botaoPostoCadastroCliente {
+	margin-top: 0px;
+	margin-left: 0px;
+	color: #000000!important;
+	background: #ffff00!important;
+	padding: 10px 20px !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	display: block;
+	position: relative;
+}
+
+.botaoListarFrentistaCliente {
+	margin-top: -100px;
+	margin-left: 140px;
+	color: #000000!important;
+	background: #ffff00!important;
+	padding: 10px 20px !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+
+
+
+.textbotaoCliente {
+	text-decoration: none !important;
+	color: #ffffff !important;
+	background: #0000ff !important;
+	padding: 3px 10px !important;
+}
+
+#contanner {
+	margin-top: 700px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#conteudo {
+	width: 14000px;
+	height: 120px;
+}
+

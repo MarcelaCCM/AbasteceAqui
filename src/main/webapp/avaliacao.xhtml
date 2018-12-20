@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<h:outputStylesheet library="css" name="cadastro.css" />
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Lançar Avaliacao</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+		<p:growl id="groMessage" life="4000" />
+		<h:form id="formVenda">
+			<p:wizard>
+				<p:tab id="selecionarFrentista" title="Selecionar Frentista">
+					<p:dataTable id="tabelaListaFrentistas" var="item"
+						value="#{frentistaController.listarFrentista()}"
+						rowKey="#{item.id}" selection="#{vendaController.venda.frentista}"
+						rows="10" paginator="true">
+
+						<f:facet name="header">
+                            LISTA DE FRENTISTA
+                        </f:facet>
+
+						<p:column selectionMode="single" />
+
+						<p:column headerText="Código">
+                            #{item.id}
+                        </p:column>
+
+						<p:column headerText="Nome Posto" filterBy="#{item.nome}"
+							sortBy="#{item.nome}">
+                            #{item.nome}
+                        </p:column>
+					</p:dataTable>
+				</p:tab>
+
+				<p:tab id="selecionarUsuario" title="Selecionar Usuario">
+					<p:dataTable id="tabelaListaUsuarios" var="item"
+						value="#{usuarioController.listarUsuario()}" rowKey="#{item.id}"
+						selection="#{vendaController.venda.usuario}" rows="10"
+						paginator="true">
+
+						<f:facet name="header">
+                                    LISTA DE USUARIOS
+                                </f:facet>
+
+						<p:column selectionMode="single" />
+
+						<p:column headerText="Código">
+                                    #{item.id}
+                                </p:column>
+
+						<p:column headerText="Nome" filterBy="#{item.nome}"
+							sortBy="#{item.nome}">
+                                    #{item.nome}
+                                </p:column>
+
+						<p:column headerText="CPF">
+                                    #{item.cpfUsuario}
+                                </p:column>
+
+						<p:column headerText="Telefone">
+                                    #{item.fone}
+                                </p:column>
+					</p:dataTable>
+				</p:tab>
+
+				<p:tab id="cadAvaliacao" title="Preencher Dados da Avaliação">
+					<p:panel header="Dados da Avaliação">
+						<p:panelGrid columns="3">
+							<h:outputText value="Comentario:" />
+							<p:inputText id="comentario"
+								value="#{avaliacaoController.avaliacao.comentario}"
+								required="true"
+								requiredMessage="Tá faltando preencher o campo comentario!" />
+							<p:message for="comentario" />
+
+							<h:outputText value="Avaliacao:" />
+							<p:inputText id="avaliacao"
+								value="#{avaliacaoController.avaliacao.avaliacao}"
+								required="true"
+								requiredMessage="Tá faltando preencher o campo avaliacao!" />
+							<p:message for="avaliacao" />
+
+							<h:outputText value="Data:" />
+							<p:calendar id="data"
+								value="#{avaliacaoController.avaliacao.data}"
+								requiredMessage="Tá faltando preencher o campo data!" />
+							<p:message for="data" />
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="visualizarVenda" title="Visualizar Avaliação">
+					<p:panel header="Visualizar Dados da Avaliação">
+						<p:panelGrid columns="2">
+							<h:outputText value="Nome do Frentista:" />
+							<h:outputText value="#{vendaController.venda.frentista.nome}" />
+
+							<h:outputText value="Nome do Usuario:" />
+							<h:outputText value="#{vendaController.venda.usuario.nome}" />
+
+							<h:outputText value="Comentario:" />
+							<h:outputText value="#{avaliacaoController.avaliacao.comentario}" />
+
+							<h:outputText value="Avaliacao:" />
+							<p:inputText value="#{avaliacaoController.avaliacao.avaliacao}" />
+
+							<h:outputText value="Data:" />
+							<p:calendar value="#{avaliacaoController.avaliacao.data}" />
+
+						</p:panelGrid>
+						<p:commandButton value="Finalizar Venda"
+							action="#{avaliacaoController.salvar()}"
+							update=":formVenda :groMessage">
+							<p:confirm header="Atenção"
+								message="Deseja finalizar a avaliação?" />
+						</p:commandButton>
+					</p:panel>
+				</p:tab>
+			</p:wizard>
+		</h:form>
+		<p:confirmDialog id="dialConfirm" global="true"
+			widgetVar="widDialConfirma">
+			<h:form>
+				<p:commandButton value="sim" styleClass="ui-confirmdialog-yes"
+					type="button" icon="ui-icon-check" />
+				<p:commandButton value="não" styleClass="ui-confirmdialog-no"
+					type="button" icon="ui-icon-close" />
+			</h:form>
+		</p:confirmDialog>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("../imagens/perfilFrentista.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#cabecalho {
+	margin-top: 60px;
+	margin-bottom: 0;
+
+}
+
+.botaoVendaFrentista{
+	margin-top: 50px;
+	margin-left: 200px;
+	color: #000000!important;
+	background: #ffff00!important;
+	padding: 10px 20px !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+
+.botaoAlterarFrentista{
+	margin-top: 20px;
+	margin-left: 200px;
+	color: #000000!important;
+	background: #ffff00!important;
+	padding: 10px 20px !important;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+.textbotao {
+	text-decoration: none !important;
+	color: #ffffff !important;
+	background: #0000ff !important;
+	padding: 3px 10px !important;
+}
+
+#contanner {
+	margin-top: 700px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#conteudo {
+	width: 14000px;
+	height: 120px;
+}
+

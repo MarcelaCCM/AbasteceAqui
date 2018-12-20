@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Listar Postos</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+		<p:growl id="gro" life="4000" />
+
+		<h:form id="formCadPosto">
+			<p:dataTable id="tablePosto" value="#{postoController.listarPosto()}"
+				var="item" rowKey="#{item.id}" paginator="true" rows="10"
+				selectionMode="single">
+				<p:column headerText="Código" width="20%"
+					style="text-align: center;">
+                     #{item.id}
+                 </p:column>
+				<p:column headerText="Nome Fantasia">
+                     #{item.nomeFantasia}
+                 </p:column>
+				<p:column headerText="CNPJ">
+                     #{item.cnpj}
+                 </p:column>
+				<p:column headerText="Preço Alcool">
+                     #{item.precoAlcool}
+                 </p:column>
+				<p:column headerText="Preço Gasolina">
+                     #{item.precoGasolina}
+                 </p:column>
+
+				<p:column headerText="Operações" width="30%">
+					<p:commandButton icon="ui-icon-search" value="Visualizar"
+						oncomplete="PF('widDialVisualizaPosto').show()"
+						update=":formCadPosto:dialVisualizaPosto">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{postoController.selectedPosto}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil" value="Alterar"
+						oncomplete="PF('widDialAlteraPosto').show()"
+						update=":dialAlteraPosto">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{postoController.selectedPosto}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-trash" value="Deletar"
+						action="#{postoController.deletar()}" update=":formCadPosto :gro">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{postoController.selectedPosto}" />
+						<p:confirm header="Atenção"
+							message="Deseja realmente deletar o posto?" />
+					</p:commandButton>
+
+				</p:column>
+			</p:dataTable>
+			
+			<p:dialog id="dialVisualizaPosto" visible="false" modal="true"
+				header="Posto cadastrado" resizable="false"
+				widgetVar="widDialVisualizaPosto" appendTo="@(body)">
+				<p:panelGrid columns="2">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{postoController.selectedPosto.id}" />
+
+					<h:outputText value="Cnpj" />
+					<h:outputText value="#{postoController.selectedPosto.cnpj}" />
+
+					<h:outputText value="distribuidora:" />
+					<h:outputText
+						value="#{postoController.selectedPosto.distribuidora}" />
+
+					<h:outputText value="Endereco:" />
+					<h:outputText value="#{postoController.selectedPosto.endereco}" />
+
+					<h:outputText value="Fone:" />
+					<h:outputText value="#{postoController.selectedPosto.fone}" />
+
+					<h:outputText value="NomeFantasia:" />
+					<h:outputText value="#{postoController.selectedPosto.nomeFantasia}" />
+
+
+				</p:panelGrid>
+			</p:dialog>
+
+			</h:form>
+			<p:dialog id="dialAlteraPosto" visible="false" modal="true"
+				resizable="false" widgetVar="widDialAlteraPosto" appendTo="@(body)">
+				<h:form id="formDialAltera">
+					<p:panelGrid columns="3">
+						<h:outputText styleClass="caixadetexto" value="CNPJ*:" />
+						<p:inputText id="cadcnpj"
+							value="#{postoController.selectedPosto.cnpj}" required="true"
+							requiredMessage="Falta preencher" />
+						<p:message for="cadcnpj" />
+
+						<h:outputText styleClass="caixadetexto" value="Nome Fantasia*:" />
+						<p:inputText id="cadnomeFantasia"
+							value="#{postoController.selectedPosto.nomeFantasia}"
+							required="true" requiredMessage="Falta preencher" />
+						<p:message for="cadnomeFantasia" />
+
+						<h:outputText styleClass="caixadetexto" value="Preço Alcool*:" />
+						<p:inputText id="cadprecoAlcool"
+							value="#{postoController.selectedPosto.precoAlcool}"
+							required="true" requiredMessage="Falta preencher" />
+						<p:message for="cadprecoAlcool" />
+
+						<h:outputText styleClass="caixadetexto" value="Preço Gasolina*:" />
+						<p:inputText id="precoGasolina"
+							value="#{postoController.selectedPosto.precoGasolina}"
+							required="true" requiredMessage="Falta preencher" />
+						<p:message for="precoGasolina" />
+
+						<h:outputText styleClass="caixadetexto" value="Distribuidora:" />
+						<p:inputText id="caddistribuidora"
+							value="#{postoController.selectedPosto.distribuidora}"
+							required="true" requiredMessage="Falta preencher" />
+						<p:message for="caddistribuidora" />
+
+
+						<h:outputText styleClass="caixadetexto" value="Fone:" />
+						<p:inputText id="cadfone"
+							value="#{postoController.selectedPosto.fone}" required="true"
+							requiredMessage="Falta preencher" />
+						<p:message for="cadfone" />
+					</p:panelGrid>
+					<p:commandButton value="Alterar"
+						action="#{postoController.alterar()}" update=":formCadPosto :gro"
+						oncomplete="PF('widDialAlteraPosto').hide()">
+						<p:confirm header="Atenção" message="Deseja realmente alterar?" />
+					</p:commandButton>
+				</h:form>
+			</p:dialog>
+			
+			 <p:confirmDialog  id="dialConfirm" global="true" widgetVar="widDialConfirma" >
+                    <h:form>
+                        <p:commandButton value="sim" styleClass="ui-confirmdialog-yes" type="button" icon="ui-icon-check"/>
+                        <p:commandButton value="não" styleClass="ui-confirmdialog-no" type="button" icon="ui-icon-close"/>
+                    </h:form>    
+                </p:confirmDialog>
+	</h:body>
+</f:view>
+</html>
